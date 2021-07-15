@@ -36,6 +36,10 @@ services:
       - ./bcsproject/.env
     volumes:
       - ./bcsproject/:/usr/src/bcsproject-app/
+    depends_on:
+      - redis
+      - db
+      - bcsproject
   db:
     image: postgres:12.0-alpine
     volumes:
