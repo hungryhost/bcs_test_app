@@ -14,8 +14,7 @@ services:
     depends_on:
       - db
       - redis
-    networks:
-      - live
+
   celery:
     container_name: cl01_bcsproject
     build: ./bcsproject
@@ -28,8 +27,7 @@ services:
       - redis
       - db
       - bcsproject
-    networks:
-      - live
+
   celery-beat:
     container_name: clb01_bcsproject
     build: ./bcsproject
@@ -38,20 +36,16 @@ services:
       - ./bcsproject/.env
     volumes:
       - ./bcsproject/:/usr/src/bcsproject-app/
-    networks:
-      - live
   db:
     image: postgres:12.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./postgres/.env
-    networks:
-      - live
+
   redis:
     image: 'redis:alpine'
     hostname: redis
-    networks:
-      - live
+
 volumes:
   postgres_data:
