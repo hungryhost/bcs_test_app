@@ -25,7 +25,7 @@
 
 0) Сервер с установленными docker, docker-compose и nginx, с доменом с сертификатом 
 
-1) Создать в папке bcproject файл .env следующего содержания
+1) Создать в папке bcsproject файл .env следующего содержания
 ```
 # base settings
 DEBUG=off
@@ -61,7 +61,7 @@ AWS_STORAGE_BUCKET_NAME=<AWS_BUCKET_NAME>
 AWS_S3_ENDPOINT_URL=<AWS_ENDPOINT>
 ```
 
-2) Заполнить .env файл в папке postgres:
+2) В папке postgres создать .env файл следующего содержания:
 ```
 POSTGRES_USER=<db_user>
 POSTGRES_PASSWORD=<db_pass>
