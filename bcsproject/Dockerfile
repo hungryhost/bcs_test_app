@@ -40,9 +40,6 @@ COPY ./entrypoint.sh /usr/src/bcsproject-app/entrypoint.sh
 COPY ./bcsproject .
 
 RUN mkdir  ./logs/
-
-RUN chmod 755 -R /usr/src/bcsproject-app/
-
 RUN chmod +rwx ./logs/
 
 RUN chmod +x /usr/src/bcsproject-app/entrypoint.sh
