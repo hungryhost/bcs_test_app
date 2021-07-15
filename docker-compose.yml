@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  bcsproject:
+    build: ./bcsproject
+    container_name: bcsproject_app
+    ports:
+      - '127.0.0.1:8081:8081'
+    env_file:
+      - ./bcsproject/.env
+    command: gunicorn staff_site.wsgi:application --bind 0.0.0.0:8081
+    volumes:
+      - ./bcsproject/:/usr/src/bcsproject-app/
+    depends_on:
+      - db
+      - redis
+  celery:
+    container_name: cl01_bcsproject
+    build: ./bcsproject
+    command: celery -A bcsproject worker -l info --purge
+    env_file:
+      - ./bcsproject/.env
+    volumes:
+      - ./bcsproject/:/usr/src/bcsproject-app/
+    depends_on:
+      - redis
+      - db
+      - bcsproject
+  celery-beat:
+    container_name: clb01_bcsproject
+    build: ./bcsproject
+    command: celery -A bcsproject beat -l info
+    env_file:
+      - ./bcsproject/.env
+    volumes:
+      - ./bcsproject/:/usr/src/bcsproject-app/
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./postgres/.env
+  redis:
+    image: 'redis:alpine'
+    hostname: redis
+    networks:
+      - live
+volumes:
+  postgres_data:

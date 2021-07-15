@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tz %}
+{% load timestamp_tag %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <main role="main">
+
+        <div class="container">
+
+
+            <div class="alert alert-warning" role="alert">
+                Due to the fact that hash is quite a long variable, it is not displayed here.
+            </div>
+            <div class="alert alert-primary" role="alert">
+                This table shows either already saved blocks, or newly fetched. It can be
+                traced via "created_at" column - if it's not your current date and time, you see the saved data.
+            </div>
+            <form method="get" style="font-size: smaller">
+            <div class="well" style="margin-bottom: 10px">
+                <h4 style="margin-top: 10px">Date Filter</h4>
+                <div class="row">
+                    <div class="form-group col-sm-4 col-md-3">
+                        Insert a date in ISO format (e.g. 2021-06-01).
+                        {% render_field filter.form.iso_timestamp class="form-control" %}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+                <a class="btn btn-warning" href="{% url 'main' %}">Reset</a>
+            </div>
+
+            </form>
+            <div class="alert alert-primary" role="alert">
+                Count: {{ count }}
+            </div>
+            <table class="table table-striped" style="font-size: smaller">
+                <thead>
+                <tr>
+
+                    <!-- <th scope="col">hash</th> -->
+                    <th scope="col">height</th>
+                    <th scope="col">timestamp UTC</th>
+                    <th scope="col">interval</th>
+                    <th scope="col">size</th>
+                    <th scope="col">transactionCount</th>
+                    <th scope="col">miner</th>
+                    <th scope="col">reward</th>
+                    <th scope="col">created_at</th>
+                    <th scope="col">updated_at</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for block in filter_qs %}
+                    <tr>
+
+                        <!-- <th scope="row" style="font-size: 7px"> {{  block.hash }}</th> -->
+                        <td><a href="{% url 'block-detail' block.height %}">{{ block.height }}</a></td>
+                        {% localtime off %}
+                        <td>{{ block.timestamp|timestamp_to_time|date:"d-m-Y H:m:s"  }}</td>
+                        {% endlocaltime %}
+                        <td>{{ block.interval}}</td>
+                        <td>{{ block.size}}</td>
+                        <td>{{ block.transactionCount}}</td>
+                        <td>{{ block.miner}}</td>
+                        <td>{{ block.reward}}</td>
+                        <td>{{ block.created_at}}</td>
+                        <td>{{ block.updated_at}}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1&iso_timestamp={{filter_param_1}}">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}&iso_timestamp={{filter_param_1}}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}&iso_timestamp={{filter_param_1}}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}&iso_timestamp={{filter_param_1}}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}&iso_timestamp={{filter_param_1}}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}&iso_timestamp={{filter_param_1}}">Last</a>
+        {% endif %}
+
+    {% endif %}
+        </div>
+    </main>
+
+{% endblock content %}

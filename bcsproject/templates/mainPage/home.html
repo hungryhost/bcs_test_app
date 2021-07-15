@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <main role="main" class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="text-justify">Система управления проектом LockAndRent </h1>
+                <p class="lead">Вы находитесь на главной странице системы.</p>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent Sales</h5>
+                        <p class="card-text">LR Sales: работа с клиентами.</p>
+                        <a href="{% url 'sales-main' %}" class="btn btn-primary">Перейти</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent Manufacturing</h5>
+                        <p class="card-text">Обработка заказов замков.</p>
+                        <a  href="{% url 'manufacturing-main' %}" class="btn btn-primary">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent Dashboard</h5>
+                        <p class="card-text">
+                            DashBoard проекта: статистика использования проекта.
+                        </p>
+                        <a href="{% url 'lr-dashboard-main' %}" class="btn btn-primary disabled">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent Support</h5>
+                        <p class="card-text">Управление заявками на обслуживание.</p>
+                        <a href="#" class="btn btn-primary disabled">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent Family</h5>
+                        <p class="card-text">Контакты LockAndRent.</p>
+                        <a href="#" class="btn btn-primary disabled">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent Help</h5>
+                        <p class="card-text">Полезная информация для работников.</p>
+                        <a href="#" class="btn btn-primary disabled">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent CMS&Admin</h5>
+                        <p class="card-text">Управление ресурсами сервиса.</p>
+                        <a href="#" class="btn btn-primary disabled">Перейти</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6" style="margin-top: 10px">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">LockAndRent KPI&Agile</h5>
+                        <p class="card-text">Страница работника.</p>
+                        <a href="#" class="btn btn-primary disabled">Перейти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

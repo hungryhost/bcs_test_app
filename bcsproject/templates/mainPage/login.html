@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="content-section " align="center">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Войти</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit">Войти</button>
+                    </div>
+                </form>
+            <div style="margin-bottom: 10px">
+            <a href="{% url 'password_reset' %}" class="btn btn-outline-secondary" style="margin-bottom: 10px">Сбросить пароль</a>
+
+        </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

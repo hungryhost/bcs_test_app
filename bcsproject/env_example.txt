@@ -1,0 +1,27 @@
+# base settings
+DEBUG=on
+ALLOWED_HOSTS=www.example.com,localhost,127.0.0.1
+SECRET_KEY=
+CORS_ORIGIN_ALLOW_ALL=True
+CORS_ALLOWED_ORIGINS=http://127.0.0.1:8000,http://localhost:8000
+# log paths
+LOG_ROOT=/bcsproject/logs
+# database config
+DB_NAME=blockchaindb
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=admin
+DB_PASSWORD=admin
+# celery config
+CELERY_BROKER_URL=
+CELERY_RESULT_BACKEND=
+# storage settings
+USE_POSTGRES=True
+USE_S3=True
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_STORAGE_BUCKET_NAME=
+AWS_S3_ENDPOINT_URL=
+DJANGO_ADMIN_USER=admin
+DJANGO_ADMIN_EMAIL=admin@example.com
+DJANGO_ADMIN_PASSWORD=admin_password

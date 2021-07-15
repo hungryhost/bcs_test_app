@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load admin_urls %}
+{% block content %}
+
+    <div class="container">
+    <div style="margin-bottom: 10px">
+    <a href="{% url 'main' %}" class="btn btn-primary">Back to list of blocks</a>
+    </div>
+        <div class="card">
+            <div class="card-body" style="text-align: center">
+                Block with hash: {{ single_block.hash }}
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body" style="text-align: center">
+                Change info from the admin page <a href="{{ admin_url }}"> here. </a>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col" style="margin-top: 10px">
+
+                <div class="list-group" style="text-align: center; font-size: small">
+
+                    <div class="list-group-item">
+                        <a class="list-group-item" style="text-align: center">hash</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.hash }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item" style="text-align: center">height</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.height }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item" style="text-align: center">timestamp</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.timestamp }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item" style="text-align: center">interval</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.interval }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item" style="text-align: center">size</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.size }}</a>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col" style="margin-top: 10px">
+                <div class="list-group" style="text-align: center; font-size: small">
+
+                    <div class="list-group-item">
+                        <a class="list-group-item" style="text-align: center">transactionCount</a>
+                        <a class="list-group-item">{{ single_block.transactionCount }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item">miner</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.miner }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item">reward</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.reward }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item">created at</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.created_at }}</a>
+                    </div>
+                    <div class="list-group-item">
+                        <a class="list-group-item">updated at</a>
+                        <a class="list-group-item" style="overflow-wrap: break-word">{{ single_block.updated_at }}</a>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
