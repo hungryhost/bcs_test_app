@@ -35,7 +35,7 @@ RUN pip install --no-cache /wheels/*
 WORKDIR /usr/src/bcsproject-app
 
 
-COPY ./entrypoint.sh /usr/src/bcsproject-app/entrypoint.sh
+COPY ./bcsproject/entrypoint.sh /usr/src/bcsproject-app/entrypoint.sh
 
 COPY ./bcsproject .
 
