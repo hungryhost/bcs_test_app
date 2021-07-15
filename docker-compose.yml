@@ -8,7 +8,7 @@ services:
       - '127.0.0.1:8081:8081'
     env_file:
       - ./bcsproject/.env
-    command: gunicorn bcsproject.wsgi:application --bind 0.0.0.0:8081
+    command: bash -c "python manage.py migrate && gunicorn bcsproject.wsgi:application --bind 0.0.0.0:8081"
     volumes:
       - ./bcsproject/:/usr/src/bcsproject-app/
     depends_on:
@@ -25,7 +25,6 @@ services:
       - ./bcsproject/:/usr/src/bcsproject-app/
     depends_on:
       - bcsproject
-      - redis
 
   celery-beat:
     container_name: clb01_bcsproject
@@ -36,7 +35,6 @@ services:
     volumes:
       - ./bcsproject/:/usr/src/bcsproject-app/
     depends_on:
-      - redis
       - celery
   db:
     image: postgres:12.0-alpine
