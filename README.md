@@ -25,7 +25,7 @@
 
 0) Сервер с установленными docker, docker-compose и nginx, с доменом с сертификатом 
 
-1) Создать в папке bcsproject файл .env следующего содержания
+1) Создать в папке bcsproject файл .env следующего содержания:
 ```
 # base settings
 DEBUG=off
