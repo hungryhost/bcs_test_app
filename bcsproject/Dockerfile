@@ -43,5 +43,5 @@ RUN mkdir  ./logs/
 RUN chmod +rwx ./logs/
 
 RUN chmod +x /usr/src/bcsproject-app/entrypoint.sh
-
-ENTRYPOINT ["/usr/src/bcsproject-app/entrypoint.sh"]
+RUN ["chmod", "+x", "/usr/src/bcsproject-app/entrypoint.sh"]
+ENTRYPOINT ["sh", "/usr/src/bcsproject-app/entrypoint.sh"]
